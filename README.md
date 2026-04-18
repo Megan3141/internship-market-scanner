@@ -62,5 +62,3 @@ This platform solves that by:
 * **Serverless Deployment:** Automating the daily scrape via AWS Lambda or GitHub Actions cron jobs and pushing the CSV output to AWS S3.
 * **LLM Integration:** Using OpenAI/Gemini to read actual job descriptions from the links and score based on "Visa Sponsorship availability."
 
----
-*Developed by Megan*
