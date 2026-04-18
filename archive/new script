@@ -1,0 +1,59 @@
+from playwright.sync_api import sync_playwright
+import pandas as pd
+import os
+
+companies = [
+    "HSBC", "Barclays", "Unilever", "Shell", "BP",
+    "AstraZeneca", "GSK", "BT", "Vodafone", "Rolls-Royce"
+]
+
+keywords = ["intern", "internship", "summer", "placement"]
+
+results = []
+
+def scrape_company(page, company):
+    print("Checking:", company)
+
+    url = f"https://www.indeed.com/jobs?q={company}+internship&l=United+Kingdom"
+
+    page.goto(url, timeout=60000)
+    page.wait_for_timeout(3000)
+
+    cards = page.query_selector_all("a")
+
+    for card in cards:
+        try:
+            text = card.inner_text().lower()
+            href = card.get_attribute("href")
+
+            if not href:
+                continue
+
+            if any(k in text for k in keywords):
+                results.append({
+                    "company_search": company,
+                    "text": text[:200],
+                    "link": "https://uk.indeed.com" + href if href.startswith("/") else href
+                })
+        except:
+            continue
+
+
+with sync_playwright() as p:
+    browser = p.chromium.launch(headless=True)
+    page = browser.new_page()
+
+    for company in companies:
+        scrape_company(page, company)
+
+    browser.close()
+
+
+df = pd.DataFrame(results).drop_duplicates()
+
+output_path = os.path.expanduser("~/Desktop/internships_output.csv")
+df.to_csv(output_path, index=False)
+
+print("Done")
+print("Saved to:", output_path)
+print("Rows found:", len(df))
