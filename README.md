@@ -1,10 +1,9 @@
-#  UK Internship Intelligence Platform
 
 An automated, data-driven intelligence tool designed to scrape, clean, and rank early-career opportunities (Internships, Placements, Graduate Schemes) across high-tier companies in the UK & Europe. 
 
 Built with Python, Playwright, Pandas, and Streamlit, this project demonstrates a robust ETL (Extract, Transform, Load) pipeline scaling from raw HTML extraction to a final interactive dashboard.
 
-## Why this project exists
+## How is it useful
 
 Manually checking 50+ career portal pages every week for roles heavily relies on luck. Existing aggregators are often slow, crowded with spam, or charge premium fees to access their structured data.
 
@@ -13,15 +12,13 @@ This platform solves that by:
 2. Standardising job types and locations algorithmically.
 3. Scoring opportunities based on relevancy (prioritising tech, finance, analytics, and tier-1 brands).
 
-## Key Features
 
 * **Hybrid Scraping Engine:** Utilises `Requests` + `BeautifulSoup` for static ATS systems and `Playwright` headless browsers for dynamic Single Page Applications.
 * **Automated Data Cleaning:** Normalises location nomenclature, deducts role type via heuristics, and deduplicates URL endpoints efficiently via `Pandas`.
 * **Algorithmic Ranking:** Surfaces top-tier roles (Tier-1 banks, FAANG, quant firms) via an internal scoring mechanism (+2 for brand, +2 for target roles like 'data' and 'software').
 * **Modern Interface:** Includes a fully responsive `Streamlit` dashboard featuring a glassmorphism design, real-time filtering, metric tracking, and CSV exports.
 
-## Tech Stack
-
+## Tech 
 * **Language:** Python 3.9+
 * **Data Manipulation:** Pandas
 * **Web Scraping:** Playwright, BeautifulSoup4, Requests
@@ -60,5 +57,5 @@ This platform solves that by:
 
 * **Expansion to LinkedIn APIs:** Utilizing LinkedIn Data APIs to bypass scraping protections.
 * **Serverless Deployment:** Automating the daily scrape via AWS Lambda or GitHub Actions cron jobs and pushing the CSV output to AWS S3.
-* **LLM Integration:** Using OpenAI/Gemini to read actual job descriptions from the links and score based on "Visa Sponsorship availability."
+* **LLM Integration:** Using OpenAI/Gemini to read actual job descriptions from the links.
 
