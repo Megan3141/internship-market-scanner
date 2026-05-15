@@ -1,4 +1,4 @@
-# Internship Market Scanner
+## Internship Market Scanner
 
 Streamlit-based job discovery tool for collecting, filtering, and reviewing early-career opportunities from multiple online sources.
 
